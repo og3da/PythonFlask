@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "0f1ebf98-d555-434e-a471-d90ee3f1ed36",
+		"name": "REST APIs - Python Flask",
+		"description": "documentação referente ao curso de Python Flask",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19509228"
+	},
+	"item": [
+		{
+			"name": "secao6e7",
+			"item": [
+				{
+					"name": "hoteis_CRUD",
+					"item": [
+						{
+							"name": "coleção hoteis",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/hoteis",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"hoteis"
+									]
+								},
+								"description": "GET de todos hoteis (coleção hotel)\n\na URL de endpoint é: /hoteis"
+							},
+							"response": []
+						},
+						{
+							"name": "READ - hotel especifico",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/hoteis/delta",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"hoteis",
+										"delta"
+									]
+								},
+								"description": "GET de hotel específico (instância hotel)\n\na URL de endpoint é: /hoteis/{hotel_id}"
+							},
+							"response": []
+						},
+						{
+							"name": "CREATE - hotel novo",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"delta hotel\",\r\n    \"estrelas\": 5,\r\n    \"diaria\": 599.9,\r\n    \"cidade\": \"Santa catarina\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/hoteis/delta",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"hoteis",
+										"delta"
+									]
+								},
+								"description": "POST de hotel (criar novo hotel)\n\na URL de endpoint é: /hoteis/{hotel_id}"
+							},
+							"response": []
+						},
+						{
+							"name": "CREATE - erro: campos required",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"estrelas\": 5,\r\n    \"diaria\": 1000.9,\r\n    \"cidade\": \"Santa catarina\"\r\n}\r\n\r\n// NESSE CASOM ESTAMOS DEIXANDO DE ENVIAR O CAMPO \"nome\": \"foxtrot hotel\",",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/hoteis/foxtrot",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"hoteis",
+										"foxtrot"
+									]
+								},
+								"description": "POST de hotel (criar novo hotel)\n\na URL de endpoint é: /hoteis/{hotel_id}"
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE - alterar hotel",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"delta alterado hotel\",\r\n    \"estrelas\": 5,\r\n    \"diaria\": 599.9,\r\n    \"cidade\": \"Santa catarina\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/hoteis/delta",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"hoteis",
+										"delta"
+									]
+								},
+								"description": "PUT de hotel específico (alterar informações de hotel)\n\na URL de endpoint é: /hoteis/{hotel_id}"
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE - hotel",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/hoteis/delta",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"hoteis",
+										"delta"
+									]
+								},
+								"description": "DELETE de hotel específico\n\na URL de endpoint é: /hoteis/{hotel_id}"
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "seção 6 do curso em que está sendo feito um CRUD em memória de Hoteis."
+		}
+	]
+}
