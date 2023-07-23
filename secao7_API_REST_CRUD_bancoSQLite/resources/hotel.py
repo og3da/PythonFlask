@@ -71,9 +71,9 @@ class Hotel(Resource):
             return hotel_objeto.json(), 201
 
     def delete(self, hotel_id):
-        hotel = Hotel.find_hotel(hotel_id)
+        hotel = HotelModel.find_hotel(hotel_id)
         if hotel:
-            hoteis.remove(hotel)
+            hotel.delete_hotel()
             return {'message': 'hotel deleted'}, 200
         else:
             return {'message': 'hotel not found'}, 404
