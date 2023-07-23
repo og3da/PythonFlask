@@ -5,34 +5,10 @@ com a Classe "Hoteis" que é um recurso, usado em app.py
 from flask_restful import Resource, reqparse
 from models.hotel import HotelModel
 
-hoteis = [
-    {
-        'hotel_id': 'alpha',
-        'nome': 'alpha hotel',
-        'estrelas': 4.5,
-        'diaria': 420.1,
-        'cidade': 'Rio Janeiro'
-    },
-    {
-        'hotel_id': 'bravo',
-        'nome': 'bravo hotel',
-        'estrelas': 3.5,
-        'diaria': 200.5,
-        'cidade': 'Santa catarina'
-    },
-    {
-        'hotel_id': 'charlie',
-        'nome': 'charlie hotel',
-        'estrelas': 4,
-        'diaria': 352.1,
-        'cidade': 'Santa catarina'
-    }
-]
-
 
 class Hoteis(Resource):
     def get(self):
-        return {'hoteis': hoteis}
+        return {'hoteis': [hotel.json() for hotel in HotelModel.query.all()]} # SELECT * FROM hoteis
 
 
 class Hotel(Resource):
