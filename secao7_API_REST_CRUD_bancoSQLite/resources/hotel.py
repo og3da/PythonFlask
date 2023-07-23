@@ -13,10 +13,10 @@ class Hoteis(Resource):
 
 class Hotel(Resource):
     argumentos = reqparse.RequestParser()
-    argumentos.add_argument('nome')
-    argumentos.add_argument('estrelas', type=float)
+    argumentos.add_argument('nome', type=str, required=True, help="the field 'nome' cannot be blank")
+    argumentos.add_argument('estrelas', type=float, required=True, help="the field 'estrelas' cannot be blank")
     argumentos.add_argument('diaria', type=float)
-    argumentos.add_argument('cidade')
+    argumentos.add_argument('cidade', type=str)
 
     def get(self, hotel_id):
         hotel = HotelModel.find_hotel(hotel_id)
@@ -30,20 +30,29 @@ class Hotel(Resource):
 
         dados = Hotel.argumentos.parse_args()
         hotel_objeto = HotelModel(hotel_id, **dados)
-        hotel_objeto.save_hotel()
-        return hotel_objeto.json()
+        try:
+            hotel_objeto.save_hotel()
+        except:
+            return {'message': 'internal error'}, 500
+        return hotel_objeto.json(), 200
 
     def put(self, hotel_id):
         dados = Hotel.argumentos.parse_args()
         hotel_encontrado = HotelModel.find_hotel(hotel_id)
 
         if hotel_encontrado:
-            hotel_encontrado.update_hotel(**dados)
-            hotel_encontrado.save_hotel()
+            try:
+                hotel_encontrado.update_hotel(**dados)
+                hotel_encontrado.save_hotel()
+            except:
+                return {'message': 'internal error'}, 500
             return hotel_encontrado.json(), 200
         else:
             hotel_objeto = HotelModel(hotel_id, **dados)
-            hotel_objeto.save_hotel()
+            try:
+                hotel_encontrado.save_hotel()
+            except:
+                return {'message': 'internal error'}, 500
             return hotel_objeto.json(), 201
 
     def delete(self, hotel_id):
