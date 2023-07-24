@@ -1,7 +1,8 @@
 from flask_restful import Resource, reqparse
-from flask_jwt_extended import create_access_token, jwt_required # COM jwt_required VAMOS DEFINIR AS REQUISIÇÕES QUE PRECISAM DE LOGIN
+from flask_jwt_extended import create_access_token, get_raw_jwt, jwt_required # COM jwt_required VAMOS DEFINIR AS REQUISIÇÕES QUE PRECISAM DE LOGIN
 from werkzeug.security import safe_str_cmp
 from models.usuario import UserModel
+from blacklist import BLACKLIST
 
 
 argumentos = reqparse.RequestParser()
@@ -57,3 +58,11 @@ class UserLogin(Resource):
             return {'message': 'username or password is incorrect'}, 401 # nao autorizado
         except:
             return {'message': 'internal error'}, 500
+
+
+class UserLogout(Resource):
+    @jwt_required
+    def post(self):
+        jwt_id = get_raw_jwt()['jti'] # JWT Token Identifier
+        BLACKLIST.add(jwt_id)
+        return {'message': 'Logged out successfully!'}, 200
