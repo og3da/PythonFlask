@@ -18,3 +18,6 @@ gravando os dados em memória.
 
 <h2>SEÇÃO 7 - API REST com CRUD em banco de dados SQLite</h2>
 Nessa seção estamos aprimorando o código e dessa vez usando um banco de dados.
+
+<h2>SEÇÃO 8 - AUTENTICAÇÃO DE USUARIOS COM JWT</h2>
+Nessa seção estamos realizando autenticação de usuarios da API com JWT
