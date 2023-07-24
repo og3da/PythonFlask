@@ -3,6 +3,7 @@ na aula 35.Refatorando, nós criamos o pacote "Resources" e incluimos esse arqui
 com a Classe "Hoteis" que é um recurso, usado em app.py
 """
 from flask_restful import Resource, reqparse
+from flask_jwt_extended import jwt_required # COM ESSA LIB VAMOS DEFINIR AS REQUISIÇÕES QUE PRECISAM DE LOGIN
 from models.hotel import HotelModel
 
 
@@ -24,6 +25,7 @@ class Hotel(Resource):
             return hotel.json()
         return {'message': 'hotel not found'}, 404 # status code not found
 
+    @jwt_required
     def post(self, hotel_id):
         if HotelModel.find_hotel(hotel_id):
             return {'message': f'Hotel id "{hotel_id}" already exists.'}, 400
@@ -36,6 +38,7 @@ class Hotel(Resource):
             return {'message': 'internal error'}, 500
         return hotel_objeto.json(), 200
 
+    @jwt_required
     def put(self, hotel_id):
         dados = Hotel.argumentos.parse_args()
         hotel_encontrado = HotelModel.find_hotel(hotel_id)
@@ -55,6 +58,7 @@ class Hotel(Resource):
                 return {'message': 'internal error'}, 500
             return hotel_objeto.json(), 201
 
+    @jwt_required
     def delete(self, hotel_id):
         hotel = HotelModel.find_hotel(hotel_id)
         if hotel:
