@@ -1,4 +1,6 @@
 from flask_restful import Resource, reqparse
+from flask_jwt_extended import create_access_token
+from werkzeug.security import safe_str_cmp
 from models.usuario import UserModel
 
 
@@ -38,3 +40,18 @@ class UserRegister(Resource):
         return {'message': f'user created! {user.json()}'}, 201
 
 
+class UserLogin(Resource):
+    # endpoint: /login
+    @classmethod
+    def post(cls):
+        dados = argumentos.parse_args()
+        user = UserModel.find_by_login(dados['login'])
+
+        try:
+            # verificando se user e senha batem com o banco, se sim cria token
+            if user and safe_str_cmp(user.senha, dados['senha']):
+                token_de_acesso = create_access_token(identity=user.user_id)
+                return {'access_token': token_de_acesso}, 200
+            return {'message': 'username or password is incorrect'}, 401 # nao autorizado
+        except:
+            return {'message': 'internal error'}, 500
