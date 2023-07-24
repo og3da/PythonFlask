@@ -20,4 +20,6 @@ gravando os dados em memória.
 Nessa seção estamos aprimorando o código e dessa vez usando um banco de dados.
 
 <h2>SEÇÃO 8 - AUTENTICAÇÃO DE USUARIOS COM JWT</h2>
-Nessa seção estamos realizando autenticação de usuarios da API com JWT
+Nessa seção foi implementada autenticação de usuarios da API com JWT, as funcionalidades são Cadastro, Login e Logout.
+Também qualquer requisição que envolve alteração no Banco de dados como POST, PUT e DELETE solicitam um usuário logado.
+Esse login é feito através de um AccessToken gerado pelo JWT e ao fazer logout esse token é invalidado.
