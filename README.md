@@ -23,3 +23,8 @@ Nessa seção estamos aprimorando o código e dessa vez usando um banco de dados
 Nessa seção foi implementada autenticação de usuarios da API com JWT, as funcionalidades são Cadastro, Login e Logout.
 Também qualquer requisição que envolve alteração no Banco de dados como POST, PUT e DELETE solicitam um usuário logado.
 Esse login é feito através de um AccessToken gerado pelo JWT e ao fazer logout esse token é invalidado.
+
+<h2>SEÇÃO 9 - FILTROS AVANÇADOS COM PARAMETROS DE CONSULTA</h2>
+Nessa seção implementamos no código consultas SQL para possibilitar filtros ao fazer o request.
+Por exemplo caso queira filtrar os hoteis por estrelas, cidade, diaria, agora é possível.
+![image](https://github.com/og3da/PythonFlask/assets/71846924/575281c5-04fd-4597-bf90-be458c447d68)
