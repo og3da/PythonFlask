@@ -189,7 +189,7 @@
 			"description": "seção 6 do curso em que está sendo feito um CRUD em memória de Hoteis."
 		},
 		{
-			"name": "secao8",
+			"name": "secao8e9",
 			"item": [
 				{
 					"name": "hoteis_CRUD",
@@ -214,6 +214,50 @@
 									]
 								},
 								"description": "GET de todos hoteis (coleção hotel)\n\na URL de endpoint é: /hoteis"
+							},
+							"response": []
+						},
+						{
+							"name": "coleção hoteis c/parametros",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/hoteis?cidade=Santos&estrelas_min=3.5&limit=3&offset=0&diaria_max=300",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"hoteis"
+									],
+									"query": [
+										{
+											"key": "cidade",
+											"value": "Santos"
+										},
+										{
+											"key": "estrelas_min",
+											"value": "3.5"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										},
+										{
+											"key": "diaria_max",
+											"value": "300"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -402,6 +446,16 @@
 						{
 							"name": "READ - usuario especifico",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
